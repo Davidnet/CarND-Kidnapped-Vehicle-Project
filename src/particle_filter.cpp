@@ -107,7 +107,7 @@ void ParticleFilter::dataAssociation(vector<LandmarkObs> predicted,
    *   probably find it useful to implement this method and use it as a helper 
    *   during the updateWeights phase.
     */
-    for(int i = 0; i < observations.size(); i++) {
+    for(unsigned int i = 0; i < observations.size(); i++) {
       int nObs = observations.size();
       int nPred = predicted.size();
       for( int i = 0; i < nObs; i++) { // For each observation
@@ -153,7 +153,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
     LandmarkObs obs;
     Particle particle = particles[p];
 
-    for (int j = 0; j < observations.size(); j++) {
+    for (unsigned int j = 0; j < observations.size(); j++) {
       obs = observations[j];
       t_o.x = particle.x + obs.x*std::cos(particle.theta) - obs.y*std::sin(particle.theta);
       t_o.y = particle.y + obs.x*std::sin(particle.theta) + obs.y*std::cos(particle.theta);
@@ -162,10 +162,10 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 
     particles[p].weight = 1;
     double closest = std::pow(sensor_range, 2.0);
-    for (int i = 0; i < transformed_observations.size(); i++ ){
+    for (unsigned int i = 0; i < transformed_observations.size(); i++ ){
       LandmarkObs obs = transformed_observations[i];
       int minIndex = 0;
-      for (int j = 0; j < map_landmarks.landmark_list.size(); j++) {
+      for (unsigned int j = 0; j < map_landmarks.landmark_list.size(); j++) {
         double landmark_x = map_landmarks.landmark_list[j].x_f;
         double landmark_y = map_landmarks.landmark_list[j].y_f;
 
